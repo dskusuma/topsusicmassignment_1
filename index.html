@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html ng-app="chatAppIB">
+<head>
+    <meta charset="UTF-8">
+    <title> ChatApp </title>
+
+    <!-- Angular -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.min.js"></script>
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/3.6.4/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+          apiKey: "AIzaSyCETwyL90D-qDiMeC5J7TZscb6EYFt2VMc",
+          authDomain: "chatapp-topsusicm1.firebaseapp.com",
+          databaseURL: "https://chatapp-topsusicm1.firebaseio.com",
+          projectId: "chatapp-topsusicm1",
+          storageBucket: "chatapp-topsusicm1.appspot.com",
+          messagingSenderId: "1013847332661"
+        };
+        firebase.initializeApp(config);
+    </script>
+
+    <!-- This App's javascript -->
+    <script src="app.js"></script>
+    <!-- Angular Fire -->
+    <script src="https://cdn.firebase.com/libs/angularfire/2.2.0/angularfire.min.js"></script>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    
+    <!-- This App's style -->
+    <style>
+        * {
+            font-size: 16px;
+        }
+        .panel {
+            margin-left: 25%;
+        }
+        .panel-body {
+            font-family: monospace;
+        }
+
+        .creator {
+            font-size: 12px;
+        }
+    </style>
+
+</head>
+<body ng-controller="ChatController">
+    <div class="container">
+        
+        <br>
+        <div class="panel panel-default panel-resizeable" style="width:50%">
+            <div class="panel-heading">
+                <div style="text-align: center; margin-top:20px; margin-left:20px;margin-bottom:20px;">
+                    <img src="topsusicm1_simplechatapp_logo.png" alt="" style="height:100px;">
+                </div>
+                <h3 style="text-align:center">Simple Chat App</h3>
+                <div class="creator" style="text-align: center">
+                    <p class="creator">Ida Bagus Dwi Satria Kusuma | 1301140297 | TOPSUS ICM 1</p>
+                </div>
+                <!-- username form -->
+                <input style="text-align:center" type="text" class="form-control" placeholder="username" ng-model="userText" style="margin-bottom: 5px">
+            </div>
+            <div class="panel-body" >
+                <!-- messages that loaded from firebase -->
+                <p ng-repeat="x in messages"><b>[ {{x.user}} ]</b> {{x.message}} <br><i>{{x.date | date:'medium'}}</i></p>
+                <hr>
+                <!-- messages form -->
+                <div class="form-group" style="margin-bottom: 10px">
+                    <input type="text" class="form-control" placeholder="tulis pesan" ng-model="messageText">
+                </div>        
+                <button type="submit" class="btn btn-primary" ng-click="send()">KIRIM</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
